@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import { useTheme } from 'next-themes'
 
 interface Category {
   id: string
@@ -49,7 +48,6 @@ export function CategoryFilter({
   onCategorySelect: (category: string) => void
 }) {
   const [isExpanded, setIsExpanded] = useState(false)
-  const { theme } = useTheme()
 
   return (
     <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-4">

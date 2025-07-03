@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import { StarIcon } from '@heroicons/react/24/outline'
 import { MapPinIcon, PhoneIcon, EnvelopeIcon } from '@heroicons/react/24/solid'
-import Image from 'next/image'
 
 interface Provider {
   id: string
@@ -48,14 +47,13 @@ export function ProviderCard({
     <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden">
       <div className="relative h-48">
         {provider.photos.length > 0 && (
-          <Image
+          <img
             src={provider.photos[0]}
             alt={provider.name}
-            fill
+            width={600}
+            height={300}
             className="w-full h-full object-cover"
-            sizes="(max-width: 768px) 100vw, 33vw"
-            priority
-            onError={(e) => { e.currentTarget.src = '/fallback.jpg'; }}
+            onError={(e: React.SyntheticEvent<HTMLImageElement, Event>) => { e.currentTarget.src = '/fallback.jpg'; }}
           />
         )}
         <div className="absolute top-4 right-4">

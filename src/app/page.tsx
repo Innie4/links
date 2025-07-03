@@ -1,10 +1,7 @@
-"use client";
-export const dynamic = "force-dynamic";
-export const dynamicParams = true;
 import React, { useEffect, useState } from 'react';
-import { SearchBar } from '@/components/search-bar';
-import { CategoryFilter } from '@/components/category-filter';
-import { ProviderCard } from '@/components/provider-card';
+import { SearchBar } from '../components/search-bar';
+import { CategoryFilter } from '../components/category-filter';
+import { ProviderCard } from '../components/provider-card';
 
 interface Provider {
   id: string;

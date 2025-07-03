@@ -6,7 +6,6 @@ declare global {
 }
 
 import { useState, useEffect } from 'react'
-import { useTheme } from 'next-themes'
 
 interface Provider {
   id: string

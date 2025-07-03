@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import { MagnifyingGlassIcon } from '@heroicons/react/24/outline'
-import { useTheme } from 'next-themes'
+import { useTheme } from './theme-provider'
 
 interface SearchSuggestion {
   id: string

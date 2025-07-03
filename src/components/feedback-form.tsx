@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
-import { useTheme } from 'next-themes'
-import { EnvelopeIcon, PhoneIcon, MapPinIcon } from '@heroicons/react/24/outline'
+import { useTheme } from './theme-provider'
 
 interface FeedbackFormProps {
   searchQuery?: string
@@ -9,7 +8,6 @@ interface FeedbackFormProps {
 }
 
 export function FeedbackForm({ searchQuery, providerId }: FeedbackFormProps) {
-  const { theme } = useTheme()
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [success, setSuccess] = useState(false)
   const [error, setError] = useState<string | null>(null)
@@ -32,7 +30,8 @@ export function FeedbackForm({ searchQuery, providerId }: FeedbackFormProps) {
     setError(null)
 
     try {
-      const response = await fetch('/api/feedback', {
+      const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000/api';
+      const response = await fetch(`${API_URL}/feedback`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

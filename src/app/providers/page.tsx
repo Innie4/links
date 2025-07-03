@@ -3,11 +3,11 @@ export const dynamic = "force-dynamic";
 export const dynamicParams = true;
 import React from "react";
 import { useState, useEffect } from 'react'
-import { useTheme } from 'next-themes'
-import { useLanguage } from '@/components/language-provider'
-import { CategoryFilter } from '@/components/category-filter'
-import { ProviderCard } from '@/components/provider-card'
-import { MapView } from '@/components/map-view'
+import { useLanguage } from '../components/language-provider'
+import { CategoryFilter } from '../components/category-filter'
+import { ProviderCard } from '../components/provider-card'
+import { MapView } from '../components/map-view'
+import { useTheme } from '../components/theme-provider'
 
 interface Provider {
   id: string;
@@ -31,8 +31,8 @@ export default function ProvidersPage() {
   const [selectedCategory, setSelectedCategory] = useState('')
   const [priceRange, setPriceRange] = useState({ min: 0, max: 1000 })
   const [location, setLocation] = useState('')
-  const { theme } = useTheme()
   const { language } = useLanguage()
+  const { theme } = useTheme()
 
   useEffect(() => {
     fetchProviders()
@@ -40,7 +40,8 @@ export default function ProvidersPage() {
 
   const fetchProviders = async () => {
     try {
-      const response = await fetch('/api/providers', {
+      const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000/api';
+      const response = await fetch(`${API_URL}/providers`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

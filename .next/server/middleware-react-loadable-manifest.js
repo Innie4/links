@@ -1,1 +1,0 @@
-self.__REACT_LOADABLE_MANIFEST="{\"components\\\\client-root.tsx -> mixpanel-browser\":{\"id\":\"components\\\\client-root.tsx -> mixpanel-browser\",\"files\":[\"static/chunks/_app-pages-browser_node_modules_mixpanel-browser_dist_mixpanel_module_js.js\"]}}"

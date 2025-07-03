@@ -58,7 +58,8 @@ export default function AdminPage() {
 
   const fetchAdminStats = async () => {
     try {
-      const response = await fetch('/api/admin/stats')
+      const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000/api';
+      const response = await fetch(`${API_URL}/admin/stats`)
       const data = await response.json()
       setStats(data.stats)
     } catch (error) {
@@ -68,7 +69,8 @@ export default function AdminPage() {
 
   const fetchRecentProviders = async () => {
     try {
-      const response = await fetch('/api/admin/providers/recent')
+      const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000/api';
+      const response = await fetch(`${API_URL}/admin/providers/recent`)
       const data = await response.json()
       setProviders(data.providers)
     } catch (error) {
@@ -78,7 +80,8 @@ export default function AdminPage() {
 
   const fetchRecentSearches = async () => {
     try {
-      const response = await fetch('/api/admin/searches/recent')
+      const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000/api';
+      const response = await fetch(`${API_URL}/admin/searches/recent`)
       const data = await response.json()
       setSearches(data.searches)
     } catch (error) {
@@ -88,7 +91,8 @@ export default function AdminPage() {
 
   const fetchRecentFeedback = async () => {
     try {
-      const response = await fetch('/api/admin/feedback/recent')
+      const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000/api';
+      const response = await fetch(`${API_URL}/admin/feedback/recent`)
       const data = await response.json()
       setFeedback(data.feedback)
     } catch (error) {
@@ -100,7 +104,8 @@ export default function AdminPage() {
   const handleAddProvider = async (e: React.FormEvent) => {
     e.preventDefault();
     // TODO: Replace with real API call
-    // await fetch('/api/admin/providers', { method: 'POST', body: JSON.stringify(form) })
+    const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000/api';
+    // await fetch(`${API_URL}/admin/providers`, { method: 'POST', body: JSON.stringify(form) })
     setProviders([{ id: Date.now().toString(), ...form }, ...providers]);
     setForm({ name: '', category: '', status: 'active' });
     setShowAddForm(false);

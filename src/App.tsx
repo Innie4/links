@@ -1,0 +1,41 @@
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { ThemeProvider } from './components/theme-provider';
+import { LanguageProvider } from './components/language-provider';
+import { SearchBar } from './components/search-bar';
+import { Header } from './components/header';
+import { ClientRoot } from './components/client-root';
+import HomePage from './app/page';
+import AdminPage from './app/admin/page';
+import DashboardPage from './app/dashboard/page';
+import ProvidersPage from './app/providers/page';
+import ProviderDetailPage from './app/provider/[id]/page';
+import './app/globals.css';
+
+function App() {
+  return (
+    <Router>
+      <ClientRoot>
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+          <LanguageProvider>
+            <div className="min-h-screen bg-gray-50">
+              <Header />
+              <main className="container mx-auto px-4 py-8">
+                <SearchBar />
+                <Routes>
+                  <Route path="/" element={<HomePage />} />
+                  <Route path="/admin" element={<AdminPage />} />
+                  <Route path="/dashboard" element={<DashboardPage />} />
+                  <Route path="/providers" element={<ProvidersPage />} />
+                  <Route path="/provider/:id" element={<ProviderDetailPage />} />
+                </Routes>
+              </main>
+            </div>
+          </LanguageProvider>
+        </ThemeProvider>
+      </ClientRoot>
+    </Router>
+  );
+}
+
+export default App; 

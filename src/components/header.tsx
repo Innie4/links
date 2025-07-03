@@ -1,9 +1,10 @@
 "use client";
 
 import { useState } from 'react'
-import { useTheme } from 'next-themes'
-import { useLanguage } from '@/components/language-provider'
+import { useTheme } from './theme-provider'
+import { useLanguage } from './language-provider'
 import { BellIcon, MoonIcon, SunIcon, GlobeAltIcon } from '@heroicons/react/24/outline'
+import { Link } from 'react-router-dom'
 
 export function Header() {
   const { theme, setTheme } = useTheme()
@@ -66,13 +67,13 @@ export function Header() {
 
             <div className="hidden md:flex items-center space-x-8">
               {menuItems.map((item) => (
-                <a
+                <Link
                   key={item.name}
-                  href={item.href}
+                  to={item.href}
                   className="text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400"
                 >
                   {item.name}
-                </a>
+                </Link>
               ))}
             </div>
 
@@ -106,13 +107,13 @@ export function Header() {
           <div className="md:hidden">
             <div className="px-2 pt-2 pb-3 space-y-1">
               {menuItems.map((item) => (
-                <a
+                <Link
                   key={item.name}
-                  href={item.href}
+                  to={item.href}
                   className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400"
                 >
                   {item.name}
-                </a>
+                </Link>
               ))}
             </div>
           </div>

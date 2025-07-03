@@ -4,7 +4,8 @@ import { useState, useEffect } from 'react'
 import { useTheme } from 'next-themes'
 import { StarIcon, ChatBubbleLeftRightIcon, MapPinIcon } from '@heroicons/react/24/outline'
 import { PhoneIcon, EnvelopeIcon, ShareIcon } from '@heroicons/react/24/solid'
-import Image from 'next/image';
+import { useParams } from 'react-router-dom';
+import { ProviderCard } from '../../../components/provider-card';
 
 interface Provider {
   id: string
@@ -42,11 +43,7 @@ interface Review {
   createdAt: string
 }
 
-export default function ProviderPage({
-  params,
-}: {
-  params: { id: string }
-}) {
+export default function ProviderPage() {
   const [provider, setProvider] = useState<Provider | null>(null)
   const [isFavorite, setIsFavorite] = useState(false)
   const [copied, setCopied] = useState(false)
@@ -54,6 +51,7 @@ export default function ProviderPage({
   const [reviewForm, setReviewForm] = useState({ rating: 0, comment: '' });
   const [submitting, setSubmitting] = useState(false);
   const [showShareLinks, setShowShareLinks] = useState(false);
+  const params = useParams();
 
   useEffect(() => {
     fetchProviderData(params.id)
@@ -129,13 +127,10 @@ export default function ProviderPage({
       {/* Hero Section */}
       <div className="relative h-[400px]">
         {provider.photos.length > 0 && (
-          <Image
+          <img
             src={provider.photos[0]}
             alt={provider.name}
-            fill
             className="w-full h-full object-cover"
-            sizes="100vw"
-            priority
             onError={(e) => { e.currentTarget.src = '/fallback.jpg'; }}
           />
         )}
