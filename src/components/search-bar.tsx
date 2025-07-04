@@ -134,8 +134,8 @@ export function SearchBar() {
     <div className="relative w-full max-w-4xl mx-auto px-0 xs:px-2" ref={searchRef}>
       {/* Main Search Input */}
       <div className="relative group">
-        <div className="glass p-2 rounded-2xl border border-white/20 shadow-lg hover:shadow-xl transition-all duration-300 focus-within:shadow-2xl focus-within:border-blue-500/50">
-          <div className="flex flex-col xs:flex-row items-center space-y-2 xs:space-y-0 xs:space-x-3">
+        <div className="glass p-2 rounded-2xl border border-white/20 shadow-lg hover:shadow-xl transition-all duration-300 focus-within:shadow-2xl focus-within:border-blue-500/50 overflow-x-auto scrollbar-hide">
+          <div className="flex flex-row items-center space-x-2 sm:space-x-3 w-full overflow-x-auto scrollbar-hide">
             {/* Search Icon */}
             <div className="flex-shrink-0">
               <MagnifyingGlassIcon className="h-6 w-6 text-gray-400 group-focus-within:text-blue-500 transition-colors duration-300" />
@@ -149,12 +149,12 @@ export function SearchBar() {
               onKeyDown={handleKeyDown}
               onFocus={() => setShowSuggestions(true)}
               placeholder="Search for services, providers, or categories..."
-              className="flex-1 bg-transparent border-none outline-none text-base xs:text-lg placeholder-gray-400 dark:placeholder-gray-500 py-2 xs:py-0"
+              className="flex-1 min-w-0 bg-transparent border-none outline-none text-base sm:text-lg placeholder-gray-400 dark:placeholder-gray-500 py-2"
             />
 
             {/* Voice Search Button */}
             <button
-              className="flex-shrink-0 w-10 h-10 rounded-xl bg-gray-100 dark:bg-gray-800 flex items-center justify-center hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors duration-300 group/voice mt-0 xs:mt-0"
+              className="flex-shrink-0 w-10 h-10 rounded-xl bg-gray-100 dark:bg-gray-800 flex items-center justify-center hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors duration-300 group/voice"
               title="Voice search"
             >
               <MicrophoneIcon className="h-5 w-5 text-gray-500 group-hover/voice:text-blue-500 transition-colors duration-300" />
@@ -162,7 +162,7 @@ export function SearchBar() {
 
             {/* Filters Button */}
             <button
-              className="flex-shrink-0 w-10 h-10 rounded-xl bg-gray-100 dark:bg-gray-800 flex items-center justify-center hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors duration-300 group/filter mt-0 xs:mt-0"
+              className="flex-shrink-0 w-10 h-10 rounded-xl bg-gray-100 dark:bg-gray-800 flex items-center justify-center hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors duration-300 group/filter"
               title="Search filters"
             >
               <AdjustmentsHorizontalIcon className="h-5 w-5 text-gray-500 group-hover/filter:text-blue-500 transition-colors duration-300" />
@@ -172,7 +172,7 @@ export function SearchBar() {
             {query && (
               <button
                 onClick={clearSearch}
-                className="flex-shrink-0 w-10 h-10 rounded-xl bg-gray-100 dark:bg-gray-800 flex items-center justify-center hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors duration-300 group/clear mt-0 xs:mt-0"
+                className="flex-shrink-0 w-10 h-10 rounded-xl bg-gray-100 dark:bg-gray-800 flex items-center justify-center hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors duration-300 group/clear"
                 title="Clear search"
               >
                 <XMarkIcon className="h-5 w-5 text-gray-500 group-hover/clear:text-red-500 transition-colors duration-300" />
@@ -182,7 +182,7 @@ export function SearchBar() {
             {/* Search Button */}
             <button
               onClick={() => handleSearch(query)}
-              className="flex-shrink-0 w-full xs:w-auto px-6 py-3 rounded-xl bg-gradient-to-r from-blue-500 to-purple-600 text-white font-medium hover:from-blue-600 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl mt-2 xs:mt-0"
+              className="flex-shrink-0 px-6 py-3 rounded-xl bg-gradient-to-r from-blue-500 to-purple-600 text-white font-medium hover:from-blue-600 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
             >
               Search
             </button>

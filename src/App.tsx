@@ -13,6 +13,7 @@ import ProviderDetailPage from './pages/ProviderDetailPage';
 import CategoriesPage from './pages/CategoriesPage';
 import TrendingPage from './pages/TrendingPage';
 import AboutPage from './pages/AboutPage';
+import { Footer } from './components/footer';
 
 function App() {
   return (
@@ -20,9 +21,9 @@ function App() {
       <ClientRoot>
         <ThemeProvider>
           <LanguageProvider>
-            <div className="min-h-screen bg-gray-50">
+            <div className="flex flex-col min-h-screen bg-gray-50">
               <Header />
-              <main className="container mx-auto px-4 py-8">
+              <main className="container mx-auto px-4 py-8 flex-1">
                 <SearchBar />
                 <Routes>
                   <Route path="/" element={<HomePage />} />
@@ -35,6 +36,7 @@ function App() {
                   <Route path="/about" element={<AboutPage />} />
                 </Routes>
               </main>
+              <Footer />
             </div>
           </LanguageProvider>
         </ThemeProvider>
