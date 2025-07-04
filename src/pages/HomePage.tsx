@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { SearchBar } from '../components/search-bar';
 import { CategoryFilter } from '../components/category-filter';
 import { ProviderCard } from '../components/provider-card';
-import { Footer } from '../components/footer';
 import { 
   HeartIcon, 
   StarIcon, 
@@ -383,8 +382,6 @@ export default function HomePage() {
           </div>
         </section>
       </div>
-      {/* Footer */}
-      <Footer />
     </div>
   );
 } 
