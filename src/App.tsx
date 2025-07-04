@@ -5,18 +5,20 @@ import { LanguageProvider } from './components/language-provider';
 import { SearchBar } from './components/search-bar';
 import { Header } from './components/header';
 import { ClientRoot } from './components/client-root';
-import HomePage from './app/page';
-import AdminPage from './app/admin/page';
-import DashboardPage from './app/dashboard/page';
-import ProvidersPage from './app/providers/page';
-import ProviderDetailPage from './app/provider/[id]/page';
-import './app/globals.css';
+import HomePage from './pages/HomePage';
+import AdminPage from './pages/AdminPage';
+import DashboardPage from './pages/DashboardPage';
+import ProvidersPage from './pages/ProvidersPage';
+import ProviderDetailPage from './pages/ProviderDetailPage';
+import CategoriesPage from './pages/CategoriesPage';
+import TrendingPage from './pages/TrendingPage';
+import AboutPage from './pages/AboutPage';
 
 function App() {
   return (
     <Router>
       <ClientRoot>
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+        <ThemeProvider>
           <LanguageProvider>
             <div className="min-h-screen bg-gray-50">
               <Header />
@@ -28,6 +30,9 @@ function App() {
                   <Route path="/dashboard" element={<DashboardPage />} />
                   <Route path="/providers" element={<ProvidersPage />} />
                   <Route path="/provider/:id" element={<ProviderDetailPage />} />
+                  <Route path="/categories" element={<CategoriesPage />} />
+                  <Route path="/trending" element={<TrendingPage />} />
+                  <Route path="/about" element={<AboutPage />} />
                 </Routes>
               </main>
             </div>

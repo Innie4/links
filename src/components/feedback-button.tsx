@@ -1,4 +1,4 @@
-'use client'
+
 
 import { useState } from 'react'
 import { ChatBubbleLeftRightIcon } from '@heroicons/react/24/outline'

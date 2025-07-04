@@ -5,20 +5,21 @@ declare global {
   }
 }
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react';
+import { useTheme } from './theme-provider';
 
 interface Provider {
-  id: string
-  name: string
-  address: string
-  latitude: number
-  longitude: number
+  id: string;
+  name: string;
+  address: string;
+  latitude: number;
+  longitude: number;
 }
 
 interface MapViewProps {
-  providers: Provider[]
-  selectedLocation: string
-  onLocationSelect: (location: string) => void
+  providers: Provider[];
+  selectedLocation: string;
+  onLocationSelect: (location: string) => void;
 }
 
 export function MapView({
@@ -26,41 +27,41 @@ export function MapView({
   selectedLocation,
   onLocationSelect,
 }: MapViewProps) {
-  const [map, setMap] = useState<any>(null)
-  const [markers, setMarkers] = useState<any[]>([])
-  const { theme } = useTheme()
+  const [map, setMap] = useState<any>(null);
+  const [markers, setMarkers] = useState<any[]>([]);
+  const { theme } = useTheme();
 
   useEffect(() => {
     if (typeof window !== 'undefined' && !map) {
-      const script = document.createElement('script')
-      script.src = `https://maps.googleapis.com/maps/api/js?key=${process.env.NEXT_PUBLIC_MAPS_API_KEY}&libraries=places`
-      script.async = true
-      script.defer = true
-      document.body.appendChild(script)
+      const script = document.createElement('script');
+      script.src = `https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_MAPS_API_KEY}&libraries=places`;
+      script.async = true;
+      script.defer = true;
+      document.body.appendChild(script);
 
       script.onload = () => {
-        const mapElement = document.getElementById('map')
+        const mapElement = document.getElementById('map');
         if (mapElement) {
           const mapOptions = {
             zoom: 14,
             center: { lat: 7.3469, lng: 7.4451 }, // Anyigba coordinates
             styles: theme === 'dark' ? darkMapStyles : [],
-          }
-          const newMap = new window.google.maps.Map(mapElement, mapOptions)
-          setMap(newMap)
+          };
+          const newMap = new window.google.maps.Map(mapElement, mapOptions);
+          setMap(newMap);
 
           // Add search box
           const searchBox = new window.google.maps.places.SearchBox(
             document.getElementById('search-box')!
-          )
+          );
           searchBox.addListener('places_changed', () => {
-            const places = searchBox.getPlaces()
+            const places = searchBox.getPlaces();
             if (places.length > 0) {
-              const place = places[0]
-              onLocationSelect(place.formatted_address)
-              newMap.setCenter(place.geometry?.location!)
+              const place = places[0];
+              onLocationSelect(place.formatted_address);
+              newMap.setCenter(place.geometry?.location!);
             }
-          })
+          });
 
           // Add markers for providers
           providers.forEach((provider) => {
@@ -68,16 +69,16 @@ export function MapView({
               position: { lat: provider.latitude, lng: provider.longitude },
               map: newMap,
               title: provider.name,
-            })
+            });
             marker.addListener('click', () => {
-              window.location.href = `/provider/${provider.id}`
-            })
-            setMarkers((prev) => [...prev, marker])
-          })
+              window.location.href = `/provider/${provider.id}`;
+            });
+            setMarkers((prev) => [...prev, marker]);
+          });
         }
-      }
+      };
     }
-  }, [providers, theme])
+  }, [providers, theme]);
 
   return (
     <div className="h-[400px] rounded-lg overflow-hidden">
@@ -90,7 +91,7 @@ export function MapView({
       </div>
       <div id="map" className="h-full" />
     </div>
-  )
+  );
 }
 
 const darkMapStyles = [
